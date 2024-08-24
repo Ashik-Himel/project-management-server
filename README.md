@@ -14,7 +14,7 @@ Install all the dependencies <br />
 npm install
 ```
 
-Create a `.gitignore` file with the following variables:
+Create a `.env` file with the following variables:
 
 - EMAIL_ID
 - EMAIL_PASS
