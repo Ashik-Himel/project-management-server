@@ -24,7 +24,7 @@ Create a `.env` file with the following variables:
   <br />
   **N.B.** EMAIL_PASS should be the less secure password generated from 'App Passwords' in the google account. EMAIL_ID and EMAIL_PASS is using to work nodemailer properly. SERVER_DOMAIN should be the domain of the server. When in development, it will be 'http://localhost:3000'.
 
-Finally, run `npm run dev` to start the server in our local machine.
+Finally, run `npm run dev` to start the server in your local machine.
 
 ```
 npm run dev
