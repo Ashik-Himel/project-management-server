@@ -1,6 +1,25 @@
+/* eslint-disable comma-dangle */
+const { ObjectId } = require('mongodb');
+const { getProjectCollection } = require('../../utils/db');
+
 const assignUserInTask = async (req, res) => {
   try {
-    // TODO: write logic here
+    const projectCollection = getProjectCollection();
+    const project = await projectCollection.findOne({ _id: new ObjectId(req.params.projectId) });
+    if (!project) {
+      return res.status(404).send({ message: 'Project not found' });
+    }
+
+    const { tasks } = project;
+    const updatedTasks = tasks.map((task) => {
+      if (task._id.toString() === req.params.taskId) return { ...task, member: req.body.email };
+      return task;
+    });
+    await projectCollection.updateOne(
+      { _id: new ObjectId(project._id) },
+      { $set: { tasks: updatedTasks } }
+    );
+    res.status(200).send({ message: 'User assigned successfully' });
   } catch (error) {
     console.error(error);
     res.status(500).send({ message: 'Server Error' });

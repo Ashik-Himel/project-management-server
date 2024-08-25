@@ -10,6 +10,7 @@ const client = new MongoClient(uri, {
 });
 
 let userCollection;
+let projectCollection;
 
 const connectDB = async () => {
   await client.connect();
@@ -18,11 +19,14 @@ const connectDB = async () => {
 
   const database = client.db('project-management');
   userCollection = database.collection('users');
+  projectCollection = database.collection('projects');
 };
 
 const getUserCollection = () => userCollection;
+const getProjectCollection = () => projectCollection;
 
 module.exports = {
   connectDB,
   getUserCollection,
+  getProjectCollection,
 };
